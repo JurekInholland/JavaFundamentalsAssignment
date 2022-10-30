@@ -17,12 +17,9 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
-import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 public class MainViewController implements Initializable, IController {
-
-
     private final User loggedInUser;
     private final Database database;
     private ObservableList<Member> members;
@@ -30,8 +27,6 @@ public class MainViewController implements Initializable, IController {
 
     private Item selectedItem;
     private Member selectedMember;
-
-    private final Logger log = Logger.getLogger(this.getClass().getName());
 
     @FXML
     public TextField lendItemId;
@@ -172,7 +167,6 @@ public class MainViewController implements Initializable, IController {
     }
 
     public void onAddItemClick() {
-        log.info("Add Item");
         labelModifyItem.setText("Add Item");
         selectedItem = null;
         labelItemFeedback.setText("");
@@ -247,7 +241,6 @@ public class MainViewController implements Initializable, IController {
 
 
     public void onCancelModifyItem() {
-        log.info("cancel Item");
         labelModifyItemFeedback.setText("");
         toggleModifyItemPanel(false);
     }
@@ -318,9 +311,7 @@ public class MainViewController implements Initializable, IController {
 
         } else {
             labelMemberFeedback.setText("Please select one member to edit.");
-            return;
         }
-        log.info("Edit Members");
     }
 
     public void onItemSearchInput() {

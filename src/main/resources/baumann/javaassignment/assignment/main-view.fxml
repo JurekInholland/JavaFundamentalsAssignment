@@ -139,7 +139,10 @@
                                 <HBox fillHeight="false" spacing="12.0" VBox.vgrow="NEVER">
                                     <Button mnemonicParsing="false" onAction="#onSubmitModifyItem" styleClass="blue" text="Submit" />
                                     <Button mnemonicParsing="false" onAction="#onCancelModifyItem" text="Cancel" />
-                                    <Label fx:id="labelModifyItemFeedback" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" textFill="RED" />
+                                    <Label fx:id="labelModifyItemFeedback" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" textFill="RED" HBox.hgrow="ALWAYS">
+                              <padding>
+                                 <Insets top="3.0" />
+                              </padding></Label>
                                 </HBox>
                             </VBox>
                         </AnchorPane>
