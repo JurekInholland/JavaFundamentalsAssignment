@@ -98,6 +98,8 @@ public class MainViewController implements Initializable, IController {
         int borrowerId;
         int itemId;
 
+        lendFeedback.setTextFill(Color.RED);
+
         try {
             itemId = Integer.parseInt(lendItemId.getText());
         } catch (NumberFormatException e) {
@@ -124,7 +126,9 @@ public class MainViewController implements Initializable, IController {
             lendFeedback.setText("Item is already lent out.");
             return;
         }
-        lendFeedback.setText("%s lent to %s.".formatted(item.getTitle(), borrower.getFullName()));
+        lendFeedback.setTextFill(Color.BLACK);
+        lendFeedback.setText("%s was lent to %s.".formatted(item.getTitle(), borrower.getFullName()));
+        receiveFeedback.setText("");
         lendUserId.setText("");
         lendItemId.setText("");
 
@@ -161,6 +165,7 @@ public class MainViewController implements Initializable, IController {
             receiveFeedback.setText("%s was returned on time.".formatted(item.getTitle()));
 
         }
+        lendFeedback.setText("");
         receiveItemId.setText("");
         item.setBorrower(null);
         items.set(items.indexOf(item), item);
