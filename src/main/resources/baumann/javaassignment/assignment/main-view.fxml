@@ -181,7 +181,7 @@
                                 <HBox spacing="12.0">
                                     <Button fx:id="btnAddMemberConfirm" mnemonicParsing="false" onAction="#onSubmitModifyMember" styleClass="blue" text="Submit" />
                                     <Button fx:id="btnCancelAddMember" mnemonicParsing="false" onAction="#onCancelAddMember" text="Cancel" />
-                                    <Label fx:id="labelModifyMemberFeedback" maxHeight="1.7976931348623157E308" text="Label" textFill="RED" />
+                                    <Label fx:id="labelModifyMemberFeedback" maxHeight="1.7976931348623157E308" textFill="RED" />
                                 </HBox>
                             </VBox>
                             <VBox fx:id="memberPanel" spacing="12.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
