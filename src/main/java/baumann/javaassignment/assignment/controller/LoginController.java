@@ -17,6 +17,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Objects;
 import java.util.logging.Logger;
 
 public class LoginController {
@@ -40,9 +41,13 @@ public class LoginController {
     public Label feedback;
 
 
-    private final Database database = new Database();
+    private final Database database;
 
-    public void onLoginButtonClick(ActionEvent event) throws IOException {
+    public LoginController(Database database) {
+        this.database = database;
+    }
+
+    public void onLoginButtonClick() {
 
         String name = username.getText();
 
@@ -58,15 +63,18 @@ public class LoginController {
             return;
         }
 
+        loadScene("main-view.fxml", new MainViewController(user, database));
     }
 
-    private void loadScene(String sceneName, Object controller) {
+    private void loadScene(String sceneName, IController controller) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(LibraryApplication.class.getResource(sceneName));
             fxmlLoader.setController(controller);
             Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+            scene.getStylesheets().add(Objects.requireNonNull(LibraryApplication.class.getResource("css/style.css")).toExternalForm());
             Stage window = (Stage) vBox.getScene().getWindow();
-            window.setTitle(sceneName.replace(".fxml", ""));
+            window.setOnCloseRequest(windowEvent -> controller.shutdown());
+            window.setTitle("Library system");
             window.setScene(scene);
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -74,7 +82,7 @@ public class LoginController {
     }
 
 
-    public void onInputChanged(KeyEvent inputMethodEvent) {
+    public void onInputChanged() {
         feedback.setText("");
 
         // Disable login button if username or password is empty

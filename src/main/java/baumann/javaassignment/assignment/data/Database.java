@@ -11,11 +11,7 @@ public class Database {
 
     public Database() {
         users = new ArrayList<>();
-        users.addAll(List.of(
-                new User(0, "John", "Doe", LocalDate.of(1990, 2, 12), "password123"),
-                new User(1, "Jane", "Doe", LocalDate.of(1982, 3, 4), "s6cur!ty"),
-                new User(2, "asd", "Mustermann", LocalDate.of(2000, 1, 1), "asd")
-        ));
+        users.addAll(List.of(new User("admin", "admin"), new User("user", "user"), new User("asd", "asd")));
 
     }
 
@@ -24,6 +20,7 @@ public class Database {
     }
 
     public User getUserByName(String name) {
-        return users.stream().filter(user -> user.getFirstName().equals(name)).findFirst().orElse(null);
+        return users.stream().filter(u -> u.getUserName().equals(name)).findFirst().orElse(null);
+    }
     }
 }
