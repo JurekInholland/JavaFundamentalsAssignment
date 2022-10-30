@@ -42,7 +42,7 @@
                                     </padding>
                                     <TextField fx:id="lendItemId" promptText="Item code" />
                                     <TextField fx:id="lendUserId" layoutX="10.0" layoutY="10.0" promptText="Member identifier" />
-                                     <Button fx:id="btnLend" minWidth="-Infinity" mnemonicParsing="false" onAction="#onLendItem" styleClass="blue" text="Lend Item" />
+                                     <Button fx:id="btnLend" minWidth="-Infinity" mnemonicParsing="false" onAction="#onLendItemClick" styleClass="blue" text="Lend Item" />
                                      <Label fx:id="lendFeedback" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" textFill="RED" wrapText="true" />
                                 </VBox>
                                 <VBox layoutX="10.0" layoutY="10.0" spacing="12.0" style="-fx-background-color: white;" HBox.hgrow="ALWAYS">
@@ -50,7 +50,7 @@
                                         <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
                                     </padding>
                                     <TextField fx:id="receiveItemId" promptText="Item code" />
-                                     <Button minWidth="-Infinity" mnemonicParsing="false" onAction="#onReceiveItem" styleClass="blue" text="Receive item" />
+                                     <Button minWidth="-Infinity" mnemonicParsing="false" onAction="#onReceiveItemClick" styleClass="blue" text="Receive item" />
                                      <Label fx:id="receiveFeedback" maxHeight="1.7976931348623157E308" textFill="RED" wrapText="true" />
                                 </VBox>
                             </HBox>
@@ -91,7 +91,7 @@
                                                 <PropertyValueFactory property="title" />
                                             </cellValueFactory>
                                         </TableColumn>
-                                        <TableColumn prefWidth="70" text="Author">
+                                        <TableColumn prefWidth="150" text="Author">
                                             <cellValueFactory>
                                                 <PropertyValueFactory property="author" />
                                             </cellValueFactory>
@@ -99,9 +99,9 @@
                                     </columns>
                                 </TableView>
                                 <HBox spacing="12.0">
-                                    <Button mnemonicParsing="false" onAction="#onAddItem" styleClass="blue" text="Add Item" />
-                                    <Button mnemonicParsing="false" onAction="#onEditItem" text="Edit Item" />
-                                    <Button mnemonicParsing="false" onAction="#onDeleteItem" styleClass="red" text="Delete Item(s)" />
+                                    <Button mnemonicParsing="false" onAction="#onAddItemClick" styleClass="blue" text="Add Item" />
+                                    <Button mnemonicParsing="false" onAction="#onEditItemClick" text="Edit Item" />
+                                    <Button mnemonicParsing="false" onAction="#onDeleteItemClick" styleClass="red" text="Delete Item(s)" />
                                     <Label fx:id="labelItemFeedback" maxHeight="1.7976931348623157E308" text="Label" textFill="RED" HBox.hgrow="ALWAYS" />
                                 </HBox>
                             </VBox>
@@ -171,9 +171,9 @@
                                     <padding>
                                         <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
                                     </padding>
-                                    <TextField fx:id="addMemberFirstName" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" promptText="First Name" />
-                                    <TextField fx:id="addMemberLastName" layoutX="10.0" layoutY="167.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" promptText="Last Name" GridPane.rowIndex="1" GridPane.valignment="TOP" />
-                                    <DatePicker fx:id="addMemberDateOfBirth" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" promptText="Birth date" GridPane.columnIndex="1" />
+                                    <TextField fx:id="modifyMemberFirstName" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" promptText="First Name" />
+                                    <TextField fx:id="modifyMemberLastName" layoutX="10.0" layoutY="167.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" promptText="Last Name" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+                                    <DatePicker fx:id="modifyMemberDateOfBirth" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" promptText="Birth date" GridPane.columnIndex="1" />
                                 </GridPane>
                                 <HBox spacing="12.0">
                                     <Button fx:id="btnAddMemberConfirm" mnemonicParsing="false" onAction="#onSubmitModifyMember" styleClass="blue" text="Submit" />
@@ -227,7 +227,7 @@
                                     <Button fx:id="btnAddMember" mnemonicParsing="false" onAction="#onAddMember" styleClass="blue" text="Add member" />
                                     <Button fx:id="btnEditMember" mnemonicParsing="false" onAction="#onEditMember" text="Edit member" />
                                     <Button fx:id="btnDeleteMembers" mnemonicParsing="false" onAction="#onDeleteMembers" styleClass="red" text="Delete member(s)" />
-                                    <Label fx:id="labelUserFeedback" alignment="TOP_LEFT" contentDisplay="TOP" maxHeight="1.7976931348623157E308" nodeOrientation="LEFT_TO_RIGHT" text="asd" textFill="RED">
+                                    <Label fx:id="labelMemberFeedback" alignment="TOP_LEFT" contentDisplay="TOP" maxHeight="1.7976931348623157E308" nodeOrientation="LEFT_TO_RIGHT" text="asd" textFill="RED">
                                         <opaqueInsets>
                                             <Insets />
                                         </opaqueInsets>
