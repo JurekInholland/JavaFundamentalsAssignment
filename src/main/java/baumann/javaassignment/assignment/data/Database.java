@@ -26,7 +26,7 @@ public class Database {
         members = new ArrayList<>();
         items = new ArrayList<>();
         users = new ArrayList<>();
-        users.addAll(List.of(new User("admin", "admin"), new User("user", "user"), new User("asd", "asd")));
+        users.addAll(List.of(new User("admin", "root"), new User("librarian", "gutenberg")));
 
         try {
             deserialize();
