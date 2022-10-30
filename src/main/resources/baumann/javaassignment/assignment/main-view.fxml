@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="511.0" prefWidth="862.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1">
+    <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <center>
+            <VBox>
+                <Label maxWidth="1.7976931348623157E308" style="-fx-background-color: black;" text="📚 Library system" textFill="WHITE" VBox.vgrow="ALWAYS">
+                    <font>
+                        <Font size="36.0" />
+                    </font>
+                    <opaqueInsets>
+                        <Insets />
+                    </opaqueInsets>
+                    <padding>
+                        <Insets left="12.0" />
+                    </padding>
+                </Label>
+                <TabPane nodeOrientation="LEFT_TO_RIGHT" prefHeight="543.0" prefWidth="862.0" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+                    <Tab text="Lending/receiving">
+                        <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+                            <Label fx:id="welcomeText" text="welcome message" textFill="#000000b2">
+                                <font>
+                                    <Font size="36.0" />
+                                </font>
+                                <padding>
+                                    <Insets left="12.0" />
+                                </padding>
+                            </Label>
+                            <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="12.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="48.0">
+                                <padding>
+                                    <Insets bottom="12.0" left="12.0" right="12.0" />
+                                </padding>
+                                <VBox spacing="12.0" style="-fx-background-color: white;" HBox.hgrow="ALWAYS">
+                                    <padding>
+                                        <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
+                                    </padding>
+                                    <TextField fx:id="lendItemId" promptText="Item code" />
+                                    <TextField fx:id="lendUserId" layoutX="10.0" layoutY="10.0" promptText="Member identifier" />
+                                     <Button fx:id="btnLend" minWidth="-Infinity" mnemonicParsing="false" onAction="#onLendItem" styleClass="blue" text="Lend Item" />
+                                     <Label fx:id="lendFeedback" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" textFill="RED" wrapText="true" />
+                                </VBox>
+                                <VBox layoutX="10.0" layoutY="10.0" spacing="12.0" style="-fx-background-color: white;" HBox.hgrow="ALWAYS">
+                                    <padding>
+                                        <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
+                                    </padding>
+                                    <TextField fx:id="receiveItemId" promptText="Item code" />
+                                     <Button minWidth="-Infinity" mnemonicParsing="false" onAction="#onReceiveItem" styleClass="blue" text="Receive item" />
+                                     <Label fx:id="receiveFeedback" maxHeight="1.7976931348623157E308" textFill="RED" wrapText="true" />
+                                </VBox>
+                            </HBox>
+                        </AnchorPane>
+                    </Tab>
+                    <Tab text="Collection">
+                        <AnchorPane>
+                            <VBox fx:id="itemPanel" prefHeight="200.0" prefWidth="100.0" spacing="12.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <padding>
+                                    <Insets bottom="12.0" left="12.0" right="12.0" />
+                                </padding>
+                                <HBox maxHeight="-Infinity" VBox.vgrow="ALWAYS">
+                                    <Label maxWidth="1.7976931348623157E308" text="Items" textFill="#000000b2" HBox.hgrow="ALWAYS">
+                                        <font>
+                                            <Font size="36.0" />
+                                        </font>
+                                    </Label>
+                                    <TextField fx:id="itemSearch" alignment="TOP_LEFT" maxHeight="-Infinity" onKeyPressed="#onItemSearchInput" prefWidth="200.0" promptText="Search Items...">
+                                        <HBox.margin>
+                                            <Insets top="16.0" />
+                                        </HBox.margin>
+                                    </TextField>
+                                </HBox>
+                                <TableView fx:id="itemsTable" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                                    <columns>
+                                        <TableColumn prefWidth="45" text="Item Id">
+                                            <cellValueFactory>
+                                                <PropertyValueFactory property="id" />
+                                            </cellValueFactory>
+                                        </TableColumn>
+                                        <TableColumn prefWidth="70" text="Available">
+                                            <cellValueFactory>
+                                                <PropertyValueFactory property="available" />
+                                            </cellValueFactory>
+                                        </TableColumn>
+                                        <TableColumn prefWidth="200" text="Title">
+                                            <cellValueFactory>
+                                                <PropertyValueFactory property="title" />
+                                            </cellValueFactory>
+                                        </TableColumn>
+                                        <TableColumn prefWidth="70" text="Author">
+                                            <cellValueFactory>
+                                                <PropertyValueFactory property="author" />
+                                            </cellValueFactory>
+                                        </TableColumn>
+                                    </columns>
+                                </TableView>
+                                <HBox spacing="12.0">
+                                    <Button mnemonicParsing="false" onAction="#onAddItem" styleClass="blue" text="Add Item" />
+                                    <Button mnemonicParsing="false" onAction="#onEditItem" text="Edit Item" />
+                                    <Button mnemonicParsing="false" onAction="#onDeleteItem" styleClass="red" text="Delete Item(s)" />
+                                    <Label fx:id="labelItemFeedback" maxHeight="1.7976931348623157E308" text="Label" textFill="RED" HBox.hgrow="ALWAYS" />
+                                </HBox>
+                            </VBox>
+                            <VBox fx:id="modifyItemPanel" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <padding>
+                                    <Insets bottom="12.0" left="12.0" right="12.0" />
+                                </padding>
+                                <Label fx:id="labelModifyItem" text="Modify Item" textFill="#000000b2">
+                                    <font>
+                                        <Font size="36.0" />
+                                    </font>
+                                </Label>
+                                <GridPane hgap="12.0" style="-fx-background-color: white;" VBox.vgrow="ALWAYS">
+                                    <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    </columnConstraints>
+                                    <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="50.0" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    </rowConstraints>
+                                    <VBox.margin>
+                                        <Insets bottom="12.0" />
+                                    </VBox.margin>
+                                    <VBox>
+                                        <Label text="Title" />
+                                        <TextField fx:id="modifyItemTitle" />
+                                    </VBox>
+                                    <VBox layoutX="10.0" layoutY="10.0" GridPane.columnIndex="1">
+                                        <Label text="Author" />
+                                        <TextField fx:id="modifyItemAuthor" />
+                                    </VBox>
+                                    <Label fx:id="labelModifyItemFeedback" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" text="Label" textFill="RED" GridPane.rowIndex="1" />
+                                </GridPane>
+                                <HBox fillHeight="false" spacing="12.0" VBox.vgrow="NEVER">
+                                    <Button mnemonicParsing="false" onAction="#onSubmitModifyItem" styleClass="blue" text="Submit" />
+                                    <Button mnemonicParsing="false" onAction="#onCancelModifyItem" text="Cancel" />
+                                </HBox>
+                            </VBox>
+                        </AnchorPane>
+                    </Tab>
+                    <Tab text="Members">
+                        <AnchorPane nodeOrientation="LEFT_TO_RIGHT">
+                            <VBox fx:id="modifyMemberPanel" spacing="12.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <padding>
+                                    <Insets bottom="12.0" left="12.0" right="12.0" />
+                                </padding>
+                                <Label fx:id="labelModifyMember" graphicTextGap="0.0" text="Add member" textFill="#000000b2">
+                                    <font>
+                                        <Font size="36.0" />
+                                    </font>
+                                    <opaqueInsets>
+                                        <Insets />
+                                    </opaqueInsets>
+                                </Label>
+                                <GridPane fx:id="addUser" hgap="16.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: white;" vgap="16.0" VBox.vgrow="ALWAYS">
+                                    <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    </columnConstraints>
+                                    <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                                    </rowConstraints>
+                                    <padding>
+                                        <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+                                    </padding>
+                                    <TextField fx:id="addMemberFirstName" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" promptText="First Name" />
+                                    <TextField fx:id="addMemberLastName" layoutX="10.0" layoutY="167.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" promptText="Last Name" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+                                    <DatePicker fx:id="addMemberDateOfBirth" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" promptText="Birth date" GridPane.columnIndex="1" />
+                                </GridPane>
+                                <HBox spacing="12.0">
+                                    <Button fx:id="btnAddMemberConfirm" mnemonicParsing="false" onAction="#onSubmitModifyMember" styleClass="blue" text="Submit" />
+                                    <Button fx:id="btnCancelAddMember" mnemonicParsing="false" onAction="#onCancelAddMember" text="Cancel" />
+                                    <Label fx:id="labelModifyMemberFeedback" maxHeight="1.7976931348623157E308" text="Label" textFill="RED" />
+                                </HBox>
+                            </VBox>
+                            <VBox fx:id="memberPanel" spacing="12.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <HBox>
+                                    <Label maxWidth="1.7976931348623157E308" text="Members" textFill="#000000b2" HBox.hgrow="ALWAYS">
+                                        <font>
+                                            <Font size="36.0" />
+                                        </font>
+                                    </Label>
+                                    <TextField fx:id="userSearch" onKeyPressed="#onUserSearchInput" prefWidth="200.0" promptText="Search members...">
+                                        <HBox.margin>
+                                            <Insets top="16.0" />
+                                        </HBox.margin>
+                                    </TextField>
+                                </HBox>
+                                <TableView fx:id="membersTable" editable="true" VBox.vgrow="ALWAYS">
+                                    <columns>
+                                        <TableColumn prefWidth="75.0" text="User Id">
+                                            <cellValueFactory>
+                                                <PropertyValueFactory property="id" />
+                                            </cellValueFactory>
+                                        </TableColumn>
+
+                                        <TableColumn prefWidth="75.0" text="First Name">
+                                            <cellValueFactory>
+                                                <PropertyValueFactory property="firstName" />
+                                            </cellValueFactory>
+                                        </TableColumn>
+
+                                        <TableColumn prefWidth="75.0" text="Last Name">
+                                            <cellValueFactory>
+                                                <PropertyValueFactory property="lastName" />
+                                            </cellValueFactory>
+                                        </TableColumn>
+                                        <TableColumn prefWidth="75.0" text="Birth Date">
+                                            <cellValueFactory>
+                                                <PropertyValueFactory property="formattedDateOfBirth" />
+                                            </cellValueFactory>
+                                        </TableColumn>
+                                    </columns>
+                                </TableView>
+                                <HBox maxHeight="-Infinity" spacing="12.0" VBox.vgrow="ALWAYS">
+                                    <VBox.margin>
+                                        <Insets />
+                                    </VBox.margin>
+                                    <Button fx:id="btnAddMember" mnemonicParsing="false" onAction="#onAddMember" styleClass="blue" text="Add member" />
+                                    <Button fx:id="btnEditMember" mnemonicParsing="false" onAction="#onEditMember" text="Edit member" />
+                                    <Button fx:id="btnDeleteMembers" mnemonicParsing="false" onAction="#onDeleteMembers" styleClass="red" text="Delete member(s)" />
+                                    <Label fx:id="labelUserFeedback" alignment="TOP_LEFT" contentDisplay="TOP" maxHeight="1.7976931348623157E308" nodeOrientation="LEFT_TO_RIGHT" text="asd" textFill="RED">
+                                        <opaqueInsets>
+                                            <Insets />
+                                        </opaqueInsets>
+                                        <padding>
+                                            <Insets top="3.0" />
+                                        </padding>
+                                    </Label>
+                                </HBox>
+                                <padding>
+                                    <Insets bottom="12.0" left="12.0" right="12.0" />
+                                </padding>
+                            </VBox>
+                        </AnchorPane>
+                    </Tab>
+                </TabPane>
+            </VBox>
+        </center>
+    </BorderPane>
+</AnchorPane>
