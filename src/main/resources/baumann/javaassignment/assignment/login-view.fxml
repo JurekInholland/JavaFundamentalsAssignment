@@ -3,29 +3,39 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="602.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <VBox fx:id="vBox" alignment="CENTER" maxHeight="300.0" maxWidth="300.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-      
-      
-          <Label maxWidth="1.7976931348623157E308" text="Username" VBox.vgrow="ALWAYS">
-            <VBox.margin>
-               <Insets top="16.0" />
-            </VBox.margin>
-         </Label>
-          <TextField fx:id="username" onKeyPressed="#onInputChanged" promptText="Username">
-            <VBox.margin>
-               <Insets bottom="16.0" />
-            </VBox.margin>
-         </TextField>
-      
-          <Label maxWidth="1.7976931348623157E308" text="Password" VBox.vgrow="ALWAYS" />
-          <PasswordField fx:id="password" onKeyPressed="#onInputChanged" promptText="Password" />
-      
-          <Label fx:id="feedback" />
-      
-          <Button fx:id="btnLogin" disable="true" maxWidth="1.7976931348623157E308" onAction="#onLoginButtonClick" styleClass="blue" text="Login" VBox.vgrow="ALWAYS" />
-      </VBox>
-   </children>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="248.0" prefWidth="228.0"
+            xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1">
+    <VBox fx:id="vBox" alignment="CENTER" maxHeight="300.0" maxWidth="300.0" AnchorPane.bottomAnchor="0.0"
+          AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <Label maxWidth="1.7976931348623157E308" text="Login" textFill="#000000b2" VBox.vgrow="ALWAYS">
+          <font>
+              <Font size="36.0"/>
+          </font>
+        </Label>
+
+
+        <Label maxWidth="1.7976931348623157E308" text="Username" VBox.vgrow="ALWAYS">
+          <VBox.margin>
+              <Insets top="16.0"/>
+          </VBox.margin>
+        </Label>
+        <TextField fx:id="username" onKeyPressed="#onInputChanged" promptText="Username">
+          <VBox.margin>
+              <Insets bottom="16.0"/>
+          </VBox.margin>
+        </TextField>
+
+        <Label maxWidth="1.7976931348623157E308" text="Password" VBox.vgrow="ALWAYS"/>
+        <PasswordField fx:id="password" onKeyPressed="#onInputChanged" promptText="Password"/>
+
+        <Label fx:id="feedback" alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS"/>
+
+        <Button fx:id="btnLogin" disable="true" maxWidth="1.7976931348623157E308" onAction="#onLoginButtonClick"
+                styleClass="blue" text="Login" VBox.vgrow="ALWAYS"/>
+        <padding>
+          <Insets bottom="12.0" left="12.0" right="12.0" top="12.0"/>
+        </padding>
+    </VBox>
 </AnchorPane>

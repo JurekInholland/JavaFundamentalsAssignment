@@ -1,0 +1,30 @@
+.root {
+    /*-fx-background-color: orange;*/
+}
+
+.tab-pane .tab-header-area .tab-header-background {
+    -fx-background-color: black;
+}
+
+.button {
+    -fx-text-fill: white;
+    -fx-background-radius: 2;
+    -fx-background-insets: 0;
+    -fx-background-color: #696969;
+    -fx-start-margin: 6px;
+    -fx-end-margin: 6px;
+
+}
+.button:hover {
+    -fx-opacity: .8;
+    -fx-cursor: pointer;
+}
+
+.blue {
+    -fx-background-color: #006fff;
+
+}
+.red {
+    -fx-background-color: #be1d00;
+
+}
