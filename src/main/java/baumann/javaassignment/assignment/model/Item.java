@@ -2,6 +2,7 @@ package baumann.javaassignment.assignment.model;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Item implements Serializable {
     private int id;
@@ -12,12 +13,25 @@ public class Item implements Serializable {
     private Member borrower;
     private LocalDate lendDate;
 
+
+    public Item(int id, String title, String author, LocalDate lendDate) {
+        this(id, title, author);
+        this.lendDate = lendDate;
+    }
+
     public Item(int id, String title, String author) {
         this.id = id;
         this.title = title;
         this.author = author;
     }
 
+
+    public String getExpectedReturnDate() {
+        if (lendDate == null) {
+            return "";
+        }
+        return lendDate.plusDays(21).format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+    }
 
     public int getId() {
         return id;
@@ -28,11 +42,11 @@ public class Item implements Serializable {
     }
 
     public boolean isAvailable() {
-        return borrower == null;
+        return getLendDate() == null;
     }
 
     public String getAvailable() {
-        return borrower == null ? "Yes" : "No";
+        return getLendDate() == null ? "Yes" : "No";
     }
 
 

@@ -11,8 +11,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.stage.FileChooser;
 import javafx.util.StringConverter;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -46,6 +51,12 @@ public class MainViewController implements Initializable, IController {
     public TextField modifyMemberFirstName;
     @FXML
     public TextField modifyMemberLastName;
+
+    @FXML
+    public Button btnReceiveItem;
+
+    @FXML
+    public Button btnPayFine;
 
     @FXML
     public DatePicker modifyMemberDateOfBirth;
@@ -92,6 +103,8 @@ public class MainViewController implements Initializable, IController {
     public void onLendItemClick() {
         int borrowerId;
         int itemId;
+
+        btnPayFine.setVisible(false);
 
         lendFeedback.setTextFill(Color.RED);
 
@@ -153,8 +166,12 @@ public class MainViewController implements Initializable, IController {
 
         int daysOverdue = item.getDaysOverdue();
         if (daysOverdue > 0) {
-            receiveFeedback.setText("%s was returned. The item was overdue by %d days!".formatted(item.getTitle(),
-                    daysOverdue));
+            double fine = daysOverdue * 0.1f;
+            btnReceiveItem.setDisable(true);
+            receiveFeedback.setText("Item is late by: %d days.%nTotal fine: €%.2f".formatted(daysOverdue, fine));
+            btnPayFine.setVisible(true);
+            return;
+
         } else {
             receiveFeedback.setTextFill(Color.BLACK);
             receiveFeedback.setText("%s was returned on time.".formatted(item.getTitle()));
@@ -164,6 +181,61 @@ public class MainViewController implements Initializable, IController {
         receiveItemId.setText("");
         item.setBorrower(null);
         items.set(items.indexOf(item), item);
+    }
+
+    private Item getReceiveItem(int itemId) {
+        return items.stream().filter(i -> i.getId() == itemId).findFirst().orElse(null);
+    }
+
+    public void onPayFineClick() {
+        btnReceiveItem.setDisable(false);
+        btnPayFine.setVisible(false);
+
+        Item item = getReceiveItem(Integer.parseInt(receiveItemId.getText()));
+        if (item == null) {
+            receiveFeedback.setText("Item not found.");
+            return;
+        }
+        receiveItemId.setText("");
+        receiveFeedback.setTextFill(Color.BLACK);
+        receiveFeedback.setText("The fine of €%.2f was paid and the item %s was returned.".formatted(item.getDaysOverdue() * 0.1f, item.getTitle()));
+        item.setBorrower(null);
+        items.set(items.indexOf(item), item);
+    }
+
+    public void onImportItemsClick() {
+        File file = new FileChooser().showOpenDialog(null);
+
+        if (file != null) {
+
+            try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+                String header = br.readLine();  // skip first line
+                String line;
+                while ((line = br.readLine()) != null) {
+                    String[] data = line.split(";");
+                    int itemId;
+                    try {
+                        itemId = Integer.parseInt(data[0]);
+                        Item parsedItem = new Item(itemId, data[1], data[2]);
+                        items.add(parsedItem);
+                        lendFeedback.setTextFill(Color.BLACK);
+                        lendFeedback.setText("Items imported successfully.");
+
+                    } catch (NumberFormatException e) {
+                        lendFeedback.setText("Malformed item id encountered.");
+                    } catch (RuntimeException re) {
+                        lendFeedback.setText("Error during import.");
+                    }
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void onReceiveItemCodeChange() {
+        receiveFeedback.setText("");
+        btnPayFine.setVisible(false);
     }
 
     public void onAddItemClick() {
@@ -346,6 +418,8 @@ public class MainViewController implements Initializable, IController {
         itemsTable.selectionModelProperty().get().setSelectionMode(SelectionMode.MULTIPLE);
         modifyMemberPanel.setVisible(false);
         modifyItemPanel.setVisible(false);
+        btnPayFine.setVisible(false);
+
 
         modifyMemberDateOfBirth.setConverter(new StringConverter<>() {
             static final String PATTERN = "dd-MM-yyyy";

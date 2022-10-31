@@ -44,14 +44,16 @@
                                     <TextField fx:id="lendUserId" layoutX="10.0" layoutY="10.0" promptText="Member identifier" />
                                      <Button fx:id="btnLend" minWidth="-Infinity" mnemonicParsing="false" onAction="#onLendItemClick" styleClass="blue" text="Lend Item" />
                                      <Label fx:id="lendFeedback" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" textFill="RED" wrapText="true" />
+                           <Button mnemonicParsing="false" onAction="#onImportItemsClick" text="Import Items" VBox.vgrow="ALWAYS" />
                                 </VBox>
                                 <VBox layoutX="10.0" layoutY="10.0" spacing="12.0" style="-fx-background-color: white;" HBox.hgrow="ALWAYS">
                                     <padding>
                                         <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
                                     </padding>
-                                    <TextField fx:id="receiveItemId" promptText="Item code" />
-                                     <Button minWidth="-Infinity" mnemonicParsing="false" onAction="#onReceiveItemClick" styleClass="blue" text="Receive item" />
+                                    <TextField fx:id="receiveItemId" onKeyPressed="#onReceiveItemCodeChange" promptText="Item code" />
+                                     <Button fx:id="btnReceiveItem" minWidth="-Infinity" mnemonicParsing="false" onAction="#onReceiveItemClick" styleClass="blue" text="Receive item" />
                                      <Label fx:id="receiveFeedback" maxHeight="1.7976931348623157E308" textFill="RED" wrapText="true" />
+                           <Button fx:id="btnPayFine" mnemonicParsing="false" onAction="#onPayFineClick" styleClass="blue" text="Pay fine" />
                                 </VBox>
                             </HBox>
                         </AnchorPane>
@@ -94,6 +96,12 @@
                                         <TableColumn prefWidth="150" text="Author">
                                             <cellValueFactory>
                                                 <PropertyValueFactory property="author" />
+                                            </cellValueFactory>
+                                        </TableColumn>
+
+                                        <TableColumn text="Expected return date">
+                                            <cellValueFactory>
+                                                <PropertyValueFactory property="expectedReturnDate" />
                                             </cellValueFactory>
                                         </TableColumn>
                                     </columns>

@@ -26,7 +26,7 @@ public class Database {
         members = new ArrayList<>();
         items = new ArrayList<>();
         users = new ArrayList<>();
-        users.addAll(List.of(new User("admin", "root"), new User("librarian", "gutenberg")));
+        users.addAll(List.of(new User("admin", "root"), new User("librarian", "gutenberg"), new User("asd", "asd")));
 
         try {
             deserialize();
@@ -43,7 +43,10 @@ public class Database {
                 new Item(2, "War and Peace", "Leo Tolstoy"),
                 new Item(3, "Clean Code", "Robert C. Martin"),
                 new Item(4, "The Hitchhiker's Guide to the Galaxy", "Douglas Adams"),
-                new Item(5, "A Song of Ice and Fire", "George R.R. Martin")));
+                new Item(5, "A Song of Ice and Fire", "George R.R. Martin"),
+                new Item(6, "The Hobbit", "J.R.R. Tolkien", LocalDate.of(2021,1,1)),
+                new Item(7, "The Da Vinci Code", "Dan Brown", LocalDate.of(2022,9,21))
+        ));
     }
 
     public List<Member> getMembers() {
